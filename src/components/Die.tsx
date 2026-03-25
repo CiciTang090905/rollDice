@@ -21,12 +21,13 @@ interface DieProps {
   onRoll: () => void; // 👀 Callback from parent
 }
 
-function Die({ value, onRoll }: DieProps) { // 👀 No internal state
+export default function Die({ value, onRoll }: DieProps) {
   const dots = dotPositions[value] ?? [];
 
   return (
     <button
-      onClick={onRoll} // 👀 Call parent's handler
+      onClick={onRoll}
+      aria-label={`Roll die showing ${value}`} // 👀 Add this
       className="grid grid-cols-3 grid-rows-3 gap-2 rounded-xl bg-white p-4 shadow-lg transition-transform hover:scale-105 active:scale-95"
       style={{ width: "120px", height: "120px" }}
     >
@@ -40,5 +41,3 @@ function Die({ value, onRoll }: DieProps) { // 👀 No internal state
     </button>
   );
 }
-
-export default Die;
